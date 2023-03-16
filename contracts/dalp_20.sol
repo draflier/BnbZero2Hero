@@ -5,14 +5,15 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract DAR20Token is ERC20, Ownable, ERC20Burnable, ReentrancyGuard {
+contract DALP20Token is ERC20, Ownable, ERC20Burnable, ReentrancyGuard {
     event tokensBurned(address indexed owner, uint256 amount, string message);
     event tokensMinted(address indexed owner, uint256 amount, string message);
     event additionalTokensMinted(address indexed owner,uint256 amount,string message);
 
 
 
-    constructor() ERC20("Digital Asset Reward ERC20", "DAR20") {
+
+    constructor() ERC20("Digital Asset LP ERC20", "DALP20") {
         _mint(msg.sender, 1000 * 10**decimals());
         emit tokensMinted(msg.sender, 1000 * 10**decimals(), "Initial supply of tokens minted.");
     }

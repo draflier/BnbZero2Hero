@@ -95,17 +95,31 @@ const config: HardhatUserConfig = {
       //gasLimit: 1500000000,
       accounts: {mnemonic: process.env.MUMBAI_MNEMONIC},
     },
+
+    bnbtestnet: {
+      url: "https://data-seed-prebsc-1-s3.binance.org:8545/",
+      throwOnTransactionFailures: true,
+      throwOnCallFailures: true,
+      timeout: 1800000,
+      allowUnlimitedContractSize: true,
+      //blockGasLimit: 15000000000,
+      //gas: 30000000,
+      //gasLimit: 1500000000,
+      accounts: {mnemonic: process.env.MUMBAI_MNEMONIC},
+    },
+
     polygon_mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
     },
   },
   etherscan: {
-    apiKey: process.env.MUMBAI,	
+    apiKey: process.env.BNBTESTNET,	
     /* 
     apiKey: {
       arbitrumGoerli: process.env.ARBITRUMGOERLI,
       polygonMumbai: process.env.MUMBAI,
       goerli: process.env.GOERLI,
+      bnbTestnet: process.env.BNBTESTNET,
     }
     */
   },
