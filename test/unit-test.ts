@@ -6,76 +6,11 @@ const m_AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRo
 const m_JsonRootPath = '/home/wsldev01/dev/xalts_questions/question_2/smartcontract/metadata/json/';
 //const m_strOwnerAddr = '0x3126081ee598F6658eF6b1aA6A067484759DE4cA';
 
-let m_addrFtRewardContract = '';
-let m_addrFtLpContract = '';
-let m_addrStakeContract = '';
+let m_addrFtRewardContract = '0xD90B1eD5FE1e94d2cB36d964178b59e8434Dae0A';
+let m_addrFtLpContract = '0x3278B3bF9A0b5435eAf84b53d503c676Aed0Fd4E';
+let m_addrStakeContract = '0xF2c19874f4810AB7e9264028d7C82A596c44c663';
 
-describe("1 party stake / withdraw", function () {
-  it("Deplopying Reward contract", async function () {
-  let accounts = await ethers.getSigners();
-  //console.log(accounts);
-  //console.log(accounts[0].address);
-  let ftRewardContractFactory = await ethers.getContractFactory("DAR20Token");
-  let ftRewardContract = await ftRewardContractFactory.deploy();
-  await ftRewardContract.deployTransaction.wait(7);
-  await ftRewardContract.deployed();
-
-  try{
-    await run("verify:verify", { address: ftRewardContract.address, constructorArguments: [], contract: "contracts/dar_20.sol:DAR20Token" });
-  }catch(e){
-      console.log(e);
-  }
-
-  console.log("FT Reward Contract deployed to:", ftRewardContract.address);
-  console.log("FT Reward Contract owner address:", accounts[0].address);
-  m_addrFtRewardContract = ftRewardContract.address;
-
-  expect(await ftRewardContract.owner()).equal(accounts[0].address);
-  });
-
-  it("Deplopying Lp contract", async function () {
-    let accounts = await ethers.getSigners();
-    //console.log(accounts);
-    //console.log(accounts[0].address);
-    let ftLpContractFactory = await ethers.getContractFactory("DALP20Token");
-    let ftLpContract = await ftLpContractFactory.deploy();
-    await ftLpContract.deployTransaction.wait(7);
-    await ftLpContract.deployed();
-  
-    try{
-      await run("verify:verify", { address: ftLpContract.address, constructorArguments: [], contract: "contracts/dalp_20.sol:DALP20Token" });
-    }catch(e){
-        console.log(e);
-    }
-  
-    console.log("FT Lp Contract deployed to:", ftLpContract.address);
-    console.log("FT Lp Contract owner address:", accounts[0].address);
-    m_addrFtLpContract = ftLpContract.address;
-  
-    expect(await ftLpContract.owner()).equal(accounts[0].address);
-  });
-
-  it("Deplopying Staking Rewards contract", async function () {
-      let accounts = await ethers.getSigners();
-      //console.log(accounts);
-      //console.log(accounts[0].address);
-      let ContractFactory = await ethers.getContractFactory("StakingRewards");
-      let Contract = await ContractFactory.deploy(m_addrFtRewardContract,m_addrFtLpContract);
-      await Contract.deployTransaction.wait(7);
-      await Contract.deployed();
-    
-      try{
-        await run("verify:verify", { address: Contract.address, constructorArguments: [m_addrFtRewardContract,m_addrFtLpContract], contract: "contracts/stakingRewards.sol:StakingRewards" });
-      }catch(e){
-          console.log(e);
-      }
-    
-      console.log("Staking Rewards Contract deployed to:", Contract.address);
-      console.log("Staking Rewards Contract owner address:", accounts[0].address);
-      m_addrStakeContract = Contract.address;
-    
-      expect(await Contract.owner()).equal(accounts[0].address);
-  });
+describe("Testing Normal Stake flow", function () {
 
 
   it("Mint LP to staker", async function () {
