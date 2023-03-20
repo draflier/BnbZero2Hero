@@ -17,4 +17,8 @@
 1) cd <source_directory> 
 2) npm install
 3) npx hardhat run scripts/deploy.ts --network bnbtestnet
+```
+
+## Remarks
+For the assignment, the contracts are actually deployed using remix and tested using the unit-test.ts
 

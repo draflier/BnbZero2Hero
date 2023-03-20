@@ -6,9 +6,9 @@ const m_AccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRo
 const m_JsonRootPath = '/home/wsldev01/dev/xalts_questions/question_2/smartcontract/metadata/json/';
 //const m_strOwnerAddr = '0x3126081ee598F6658eF6b1aA6A067484759DE4cA';
 
-let m_addrFtRewardContract = '0xD90B1eD5FE1e94d2cB36d964178b59e8434Dae0A';
-let m_addrFtLpContract = '0x3278B3bF9A0b5435eAf84b53d503c676Aed0Fd4E';
-let m_addrStakeContract = '0xF2c19874f4810AB7e9264028d7C82A596c44c663';
+let m_addrFtRewardContract = '0x815B9Bf6AD3e105503B5343424E950F9d81b4F1b';
+let m_addrFtLpContract = '0xdb44E99AcDDBC58dC8D93A598688A9769A9862BB';
+let m_addrStakeContract = '0x77F9aF5f38f1463B4597341857D8b0BC0cD6A908';
 
 describe("Testing Normal Stake flow", function () {
 
